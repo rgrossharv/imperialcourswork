@@ -7,6 +7,8 @@
 \usepackage{lmodern}
 \usepackage{hyperref}
 
+\newcommand{\aside}[1]{\par\noindent\textbf{* Aside:} #1\par}
+
 \title{Algebraic Curves Lecture Notes}
 \author{Ryland Gross}
 \date{\today}
@@ -29,6 +31,69 @@
 
 \maketitle
 
-% Add lecture sections below.
+\section{Lecture 1 (October 1st 2026)}
 
+\noindent
+The majority of the class will be working over a general field $k$ which is most often identified with $\mathbb{C}$. In fact, we will be working over characteristic $0$ fields (ie there is no such $n \in \mathbb{Z}^+$ such that $n\cdot 1 = 0$). Sometimes the course will take place over $\mathbb{R}$, but this is primarily just for visualization.
+
+\begin{definition}
+    An \emph{affine algebraic set} is the set of points on which a finite collection of polynomials $f_1, \dots f_m \in k[x_1,\dots,x_m]$ vanishes. We write this as $V_k(f_1, \dots,f_m)$. Once again, $$V_k(f_1,\dots,f_m)=\{\text{all } a \in k^n : f_i(a) = 0, \text{ for all } i\}$$ 
+\end{definition}
+
+\medskip
+\noindent
+We moved onto examples after this, many of which were drawn to be visualized (which I might add here later).
+
+\begin{example}
+    $V_\mathbb{R}(x^2+y^2-1)$ is precisely the unit circle since it vanishes when $x^2 + y^2 = 1$.
+\end{example}
+
+\begin{example}
+    $(2,3) \in \mathbb{R}^2$, the point, is defined by $V_\mathbb{R}(x-2,y-3) = \{(2,3)\} \in \mathbb{R}^2$ since these are clearly the roots of our two polynomials.
+\end{example}
+
+\begin{example}
+    $\mathbb{R}^2$ is the vanishing of $0$'s constant map: $V_\mathbb{R}(0)$.
+\end{example}
+
+\begin{example}
+    $\{a_1, \dots a_n\} \subseteq \mathbb{C}$, points in $\mathbb{C}$ we can write this as the vanishing of $P(x)$ with these complex numbers as roots of said polynomial. We take $(x-a_1)\dots(x-a_n) = P(x)$ and $V_\mathbb{C}(P(x))$ is now our affine algebraic set for this set in $\mathbb{C}$
+\end{example}
+
+\begin{example}
+    The integers, $\mathbb{Z} \subseteq \mathbb{C}$ cannot be a affine algebraic set, because we need a finite number of finite degree polynomials which can only have finitely many roots.
+\end{example}
+
+\noindent
+Now, we move on to defining a more specific curve that the class will focus on.
+
+\begin{definition}
+    An affine plane curve over $k$ is a cut-out from a single non-constant polynomial in two variables. $$C = V_k(P(x,y)) = \{(x,y) \in k^2 | P(x,y) = 0\}$$
+\end{definition}
+
+\noindent
+This definition of a plane curve develops interesting questions for us to consider. \begin{enumerate}
+    \item How can we descrive the set of points of a given plane curve?
+    \item What can we say about the intersection of two plane curves? (Bezout's Theorem)
+    \item When do two polynomials describe the same plane curve? (Nullstellensatz)
+\end{enumerate}
+
+\noindent
+Let's look at that last question carefully. We got some examples in class about this, and I will expand on it a little bit. In $\mathbb{R}$, we have $V_\mathbb{R}(x^2+1) = \emptyset$, and we have $V_\mathbb{R}(1) = \emptyset$ as well, but they have very little in common as polynomials. The interesting fact, however, is that this happens precisely because $\mathbb{R}$ is not algebraically closed, over $\mathbb{C}$ this is \emph{less} of a problem. When we examine $V_\mathbb{C}(x^2+1) = \{-i,i\}$ and $ V_\mathbb{C}(1) = \emptyset$ we see clearly that we have gotten rid of the problem. 
+
+\medskip
+\noindent
+We then define the degree of a polynomial which is the largest such $i+j$ you can find in the exponents of the polynomial $$P(x,y) = \sum_{i,j}a_{ij}x^iy^j$$ The different kinds of plane curves we have are as follows \begin{enumerate}
+    \item \textbf{Degree 1:} These are linear equations describable by $ax+by+c$ and the vanishing of that polynomial where $a, b$ not both $0$
+    \item \textbf{Degree 2:} These, like in high-school, are called conics and can be described generally by the vanishing of $P(x,y) = ax^2+bxy+cy^2+dx+ey+f$. A classic example is the unit circle, the vanishing of $x^2+y^2-1$. 
+    \item \textbf{Degree 2: Ellipse:} for example, the vanishing of $P(x,y) = x^2+4y^2-1$.
+    \item \textbf{Degree 2: Hyperbolas:} for example, the vanishing of $P(x,y) = x^2-y^2-1$.
+    \item \textbf{Degree 2: Parabolas:} for example, the vanishing of $P(x,y) = x^2-y$ 
+    \item \textbf{Degree 2: Degenerate Examples:} for example, the vanishing of $xy$ or $x^2$ or $y^2$ which respecively, vanish on the union of the $x$ and $y$ axes, $x$ axis, and $y$ axis. 
+\end{enumerate}
+
+\noindent
+Now, we might be interested in certain solutions to intersections of lines with some of our plane curves. We look at an example from antiquity related to Pythagorean triples. We start by turning the Pythagorean theorem into a plane curve, $$a^2 +b^2 = c^2 \implies \frac{a^2}{c^2} + \frac{b^2}{c^2} = 1$$ Hence, if we have pick $x = a/c$ and $y = b/c$ we can have $x^2+y^2=1$ be our plane curve. So, we're really looking to rational points on the unit circle. Thus, pick $p_0 = (-1,0)$ and we will examine a line going through the unit circle as a chord (secant line) and we will examine the solution to the second intersection which gives us a parameterization for the rest of the circle. This curve will look like $y=t(x+1)$. Now, we have two equations $$x^2+y^2=1 \qquad y=t(x+1)$$ Subsitution helps us get $$x^2+t^2(x+1)^2=1 \implies (x+1)(x-1+t^2(x+1))=0 \implies x = \frac{1-t^2}{1+t^2}$$ Now, solving for $y$ once again with subtitution we get, $$y = \frac{2t}{1+t^2} \implies \text{Unit-Circle} = \left\{(-1,0) \cup \left(\frac{1-t^2}{1+t^2},\frac{2t}{1+t^2}\right), t \in \mathbb{Q}\right\}$$ Since we want rational $t$ we can pick $t= r/s$ and get, $$\text{Unit-Circle} = \left\{(-1,0) \cup \left(\frac{s^2-r^2}{s^2+r^2},\frac{2rs}{s^2+r^2}\right)\right\}$$ Which means we know our $a$ and $b$ for checking pythagorean triples which is, (after multiplying over by $c^2$ to clear denominators) $$(s^2-r^2, 2rs, s^2+r^2), r,s \in \mathbb{Z}, \gcd(r,s)=1$$ And we know there are infinitely many co-prime pairs since there are infinitely many primes, thus we have infinitely many pythagorean triples!
+
+\section{Lecture 2 (October 2nd 2026)}
 \end{document}
