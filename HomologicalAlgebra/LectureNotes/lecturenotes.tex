@@ -7,6 +7,14 @@
 \usepackage{lmodern}
 \usepackage{hyperref}
 
+% Frequently used category and algebra notation
+\DeclareMathOperator{\Hom}{Hom}
+\newcommand{\Cat}{\mathcal{C}}
+\newcommand{\CatD}{\mathcal{D}}
+\DeclareMathOperator{\ob}{ob}
+\newcommand{\Vect}{\text{Vect}}
+\newcommand{\aside}[1]{\par\noindent\textbf{* Aside:} #1\par}
+
 \title{Homological Algebra Lecture Notes}
 \author{Ryland Gross}
 \date{\today}
@@ -51,7 +59,26 @@
 So what's cool about this is that this is basically a group without the inverses requirement. It becomes hard to rigorously define what this collection of objects really is, and especially to decide if it is a set, so they handwaved this, but we'll come back to it later here. Now, we continue with an example.
 
 \begin{example}
-    Placeholder
+    The category of sets $\Cat$ can be considered and the morphisms on it are $\Hom_\Cat(A,B)$ where $A, B$ are sets. This naturally gives us $\Hom_\Cat(A,B) = \text{Func}(A,B)$. 
 \end{example}
+
+\aside{It seems that since categories are defined by the choice of the set and the morphism on them we can pick the morphsims. So for example, sets with only bijective morphisms are groupoids. Thus, we want the most natural morphism on the category's objects. Hence, for groups, we get group homomorphims. But, one could form a category from groups and group isomorphisms as the morphisms no?}
+
+\begin{example}
+    The category of groups. $\Cat = $ groups and we form the category of groups. We initially have $\ob(\text{Groups})$ and $\Hom_{\text{Groups}}(A,B) =$ the set of group homomorphisms between groups $A$ and $B$.    
+\end{example}
+
+\begin{example}
+    The category of topological spaces. $\Cat = \text{Top}$ the category of topological spaces so we have. $\ob(\text{Top}) =$ all topological spaces, and then we also have $\Hom_{\text{Top}}(A,B) =$ all continuous functions between $A$ and $B$.
+\end{example}
+
+\noindent
+For the next example we introduce rings and modules. $R$ is a Ring (not necessarily commutative) and it has modules say $A,B$ satisfying the usual axioms. 
+
+\begin{example}
+    The category of $R$-Modules. $\Cat = R\text{-Modules}$ where, for example, $A,B \in \ob(R\text{-Modules})$ and we have $\Hom_{R\text{-Modules}}(A,B)$ as the $R$-Module homomorphisms between modules $A$ and $B$.
+\end{example}
+
+Now, we move onto subcategories which is exactly what you think it is, though our morphisms change. 
 
 \end{document}
