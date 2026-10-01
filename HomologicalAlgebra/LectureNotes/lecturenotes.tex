@@ -29,6 +29,29 @@
 
 \maketitle
 
-% Add lecture sections below.
+\section{Lecture 1 (October 1st 2026)}
+
+\noindent
+\textbf{Preview:} We basically spend some time doing category theory, and the theory of functors with some attention paid to $R$-Modules. There is some additional mastery material that we need to cover as well.
+
+\subsection*{Basics of Category Theory}
+
+\begin{definition}
+    A \emph{category} $\mathcal{C}$ consists of 
+    \begin{enumerate}
+        \item a collection of `objects' called $\text{ob}(\mathcal{C})$
+        \item $\forall A, B \in \text{ob}(\mathcal{C})$ we have a set of ``morphisms'' $\text{Hom}_{\mathcal{C}}(A,B)$
+        \item An identity (or a unit) for each object $\text{id}_A \in \text{Hom}_{\mathcal{C}}(A,A)$
+        \item A composition rule for $A,B,C$ which is: $\text{Hom}_{\mathcal{C}}(B,C) \times \text{Hom}_{\mathcal{C}}(A,B) \to \text{Hom}_{\mathcal{C}}(A,C)$ It is simple to think of $g \circ f \in \text{Hom}_{\mathcal{C}}(A,C)$ where $g \in \text{Hom}_{\mathcal{C}}(B,C)$ and $f \in \text{Hom}_{\mathcal{C}}(A,B)$ so that we really have composition of functions here. 
+        \item These functions are also associative such that for $f \in \text{Hom}_{\mathcal{C}}(A,B), g \in \text{Hom}_{\mathcal{C}}(B,C), h \in \text{Hom}_{\mathcal{C}}(C,D)$ we have $h \circ (g \circ f) = (h \circ g) \circ f$ and the same for units $\text{id}_B \circ f = f \circ \text{id}_A = f$.
+    \end{enumerate}
+\end{definition}
+
+\noindent
+So what's cool about this is that this is basically a group without the inverses requirement. It becomes hard to rigorously define what this collection of objects really is, and especially to decide if it is a set, so they handwaved this, but we'll come back to it later here. Now, we continue with an example.
+
+\begin{example}
+    Placeholder
+\end{example}
 
 \end{document}
