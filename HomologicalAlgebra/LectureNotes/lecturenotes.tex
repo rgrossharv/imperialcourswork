@@ -62,8 +62,6 @@ So what's cool about this is that this is basically a group without the inverses
     The category of sets $\Cat$ can be considered and the morphisms on it are $\Hom_\Cat(A,B)$ where $A, B$ are sets. This naturally gives us $\Hom_\Cat(A,B) = \text{Func}(A,B)$. 
 \end{example}
 
-\aside{It seems that since categories are defined by the choice of the set and the morphism on them we can pick the morphsims. So for example, sets with only bijective morphisms are groupoids. Thus, we want the most natural morphism on the category's objects. Hence, for groups, we get group homomorphims. But, one could form a category from groups and group isomorphisms as the morphisms no?}
-
 \begin{example}
     The category of groups. $\Cat = $ groups and we form the category of groups. We initially have $\ob(\text{Groups})$ and $\Hom_{\text{Groups}}(A,B) =$ the set of group homomorphisms between groups $A$ and $B$.    
 \end{example}
@@ -73,13 +71,63 @@ So what's cool about this is that this is basically a group without the inverses
 \end{example}
 
 \noindent
-For the next example we introduce rings and modules. $R$ is a Ring (not necessarily commutative) and it has modules say $A,B$ satisfying the usual axioms. 
+For the next example we introduce rings and modules. $R$ is a ring (not necessarily commutative) and it has modules say $A,B$ satisfying the usual axioms. 
 
 \begin{example}
-    The category of $R$-Modules. $\Cat = R\text{-Modules}$ where, for example, $A,B \in \ob(R\text{-Modules})$ and we have $\Hom_{R\text{-Modules}}(A,B)$ as the $R$-Module homomorphisms between modules $A$ and $B$.
+    The category of $R$-Modules. $\Cat = R\text{-Modules}$ where, for example, $A,B \in \ob(R\text{-Modules})$ and we have $\Hom_{R}(A,B)$ as the $R$-Module homomorphisms between modules $A$ and $B$.
 \end{example}
 
 \noindent
-Now, we move onto subcategories which is exactly what you think it is, though our morphisms change. 
+Now, we move onto subcategories which is exactly what you think it is. 
+
+\begin{definition}
+    A \emph{subcategory} of a category, $\CatD \subseteq \Cat$ is a subcollection $\ob(\CatD) \subseteq \ob(\Cat)$ and we have for all $X, Y \in \ob(\CatD)$ we have $\Hom_\CatD(X,Y) \subseteq \Hom_\Cat(X,Y)$ such that \begin{enumerate}
+        \item $\text{id}_X \in \Hom_\CatD(X,X)$
+        \item It is closed under composition (Need more substance here).
+    \end{enumerate} 
+\end{definition}
+\noindent
+We call $\CatD$ a full subcategory of $\Cat$ if $\forall X,Y \in \ob(\CatD)$ we have $\Hom_\CatD(X,Y) = \Hom_\Cat(X,Y)$. 
+
+\begin{example}
+    The category of abelian groups. We will call this $\CatD = \text{Ab}$ We have $\text{Ab} \hookrightarrow \text{Groups}$ is a full subcategory since the fact that two groups are abelian doesn't change the homomorphisms between them. Hence, $\Hom_\text{Ab}(A,B) = \Hom_\text{Groups}(A,B)$ for any choice $A,B \in \ob(\text{Ab})$.
+\end{example}
+
+\begin{example}
+    For a field $k$, we consider the category of vector spaces of $k$, $\Vect_k = \Cat$, then we can have the sub-category of finite dimensional vector spaces of $k$, $\text{fd}(\Vect_k) = \CatD, \CatD \subseteq \Cat$ is a full subcategory.
+\end{example}
+
+\noindent
+Now, moving ahead with a view towards functors, we need to introduce some machinery to understand some properties we will learn about later like contravariance. 
+
+\begin{definition}
+    if $\Cat$ is a category then $\Cat^\text{op}$ is the opposite category defined such that $\ob(\Cat) = \ob(\Cat^\text{op})$ where $\Hom_{\Cat^\text{op}}(X,Y) = \Hom_\Cat(Y,X)$.
+\end{definition}
+
+\begin{definition}
+    A (covariant) \emph{functor} on two categories $\Cat$ and $\CatD$, $F: \Cat \to \CatD$ is an assignment between $\ob(\Cat) \to \ob(\CatD)$ that takes $X \in \ob(\Cat)$ to  $F(X) \in \ob(\CatD)$ so we have $F$ taking $X \to F(X)$ such that for any $X,Y \in \ob(\Cat)$ we know there exists $f: \Hom_\Cat(X,Y) \to \Hom_\CatD(F(X),F(Y))$ which also must have the properties that $F(\text{id}_X) = \text{id}_{F(X)}$ and that $F(f \circ g) = F(f) \circ F(g)$.
+\end{definition}
+
+\begin{definition}
+    A \emph{contravariant funtor} is a covariant functor $F: \Cat^{\text{op}} \to \CatD$ This means it flips the direction when we apply it to spaces and functions between their homomorphisms $\Hom_\Cat(X,Y) \to \Hom_\CatD(F(Y),F(X))$
+\end{definition}
+
+\begin{example}
+    Here we will let $\Cat = \text{Top}$ and $\CatD = \text{Set}$ and we take the natural function from a topological space to the set underneath it. $F: \text{Top} \to \text{Set}$ which forgets the topology and just views the former topological space as a set. The precise way to think of this is that \begin{enumerate}
+        \item $F(X)$ is merely the set $X$ where earlier it had a topology.
+        \item $f \in \Hom_\text{Top}(X,Y)$ is continuous since all the morphisms are continuous but $F(f)$ is merely the function, it forgets that it is continuous.
+    \end{enumerate}
+\end{example}
+
+\begin{definition}
+    A functor $F$, $F:\Cat \to \CatD$ is called fully faithful if $f: Hom_\Cat(X,Y) \to \Hom_\CatD(F(X),F(Y))$ is bijective for $X,Y$ in $\Cat$
+\end{definition}
+
+\noindent
+From now on $\ob(\Cat)$ will be replaced by just $\Cat$.
+
+\begin{example}
+    For any category $\Cat$ and any object $A \in \Cat$ there is a contravariant functor $\Cat \to \text{Set}$ where $F = (\Hom_\Cat(-,A))$ where the dash is where we will input our 
+\end{example}
 
 \end{document}
