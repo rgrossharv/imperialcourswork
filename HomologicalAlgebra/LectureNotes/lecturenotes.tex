@@ -55,8 +55,7 @@
     \end{enumerate}
 \end{definition}
 
-\noindent
-So what's cool about this is that this is basically a group without the inverses requirement. It becomes hard to rigorously define what this collection of objects really is, and especially to decide if it is a set, so they handwaved this, but we'll come back to it later here. Now, we continue with an example.
+\aside{add intuition here}
 
 \begin{example}
     The category of sets $\Cat$ can be considered and the morphisms on it are $\Hom_\Cat(A,B)$ where $A, B$ are sets. This naturally gives us $\Hom_\Cat(A,B) = \text{Func}(A,B)$. 
@@ -105,7 +104,7 @@ Now, moving ahead with a view towards functors, we need to introduce some machin
 \end{definition}
 
 \begin{definition}
-    A (covariant) \emph{functor} on two categories $\Cat$ and $\CatD$, $F: \Cat \to \CatD$ is an assignment between $\ob(\Cat) \to \ob(\CatD)$ that takes $X \in \ob(\Cat)$ to  $F(X) \in \ob(\CatD)$ so we have $F$ taking $X \to F(X)$ such that for any $X,Y \in \ob(\Cat)$ we know there exists $f: \Hom_\Cat(X,Y) \to \Hom_\CatD(F(X),F(Y))$ which also must have the properties that $F(\text{id}_X) = \text{id}_{F(X)}$ and that $F(f \circ g) = F(f) \circ F(g)$.
+    A (covariant) \emph{functor} on two categories $\Cat$ and $\CatD$, $F: \Cat \to \CatD$ is an assignment between $\ob(\Cat) \to \ob(\CatD)$ that takes $X \in \ob(\Cat)$ to  $F(X) \in \ob(\CatD)$ so we have $F$ taking $X \to F(X)$ such that for any $X,Y \in \ob(\Cat)$ we know there exists $F_{X,Y}: \Hom_\Cat(X,Y) \to \Hom_\CatD(F(X),F(Y))$ where $F(f):F(X) \to F(Y)$ which also must have the properties that $F(\text{id}_X) = \text{id}_{F(X)}$ and that $F(f \circ g) = F(f) \circ F(g)$.
 \end{definition}
 
 \begin{definition}
