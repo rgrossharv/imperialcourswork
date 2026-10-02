@@ -109,7 +109,7 @@ Now, moving ahead with a view towards functors, we need to introduce some machin
 \end{definition}
 
 \begin{definition}
-    A \emph{contravariant funtor} is a covariant functor $F: \Cat^{\text{op}} \to \CatD$ This means it flips the direction when we apply it to spaces and functions between their homomorphisms $\Hom_\Cat(X,Y) \to \Hom_\CatD(F(Y),F(X))$
+    A \emph{contravariant functor} is a covariant functor $F: \Cat^{\text{op}} \to \CatD$ This means it flips the direction when we apply it to spaces and functions between their homomorphisms $\Hom_\Cat(X,Y) \to \Hom_\CatD(F(Y),F(X))$
 \end{definition}
 
 \begin{example}
@@ -127,7 +127,8 @@ Now, moving ahead with a view towards functors, we need to introduce some machin
 From now on $\ob(\Cat)$ will be replaced by just $\Cat$.
 
 \begin{example}
-    For any category $\Cat$ and any object $A \in \Cat$ there is a contravariant functor $\Cat \to \text{Set}$ where $F = (\Hom_\Cat(-,A))$ where the dash is where we will input our 
+    For any category $\Cat$ and any object $A \in \Cat$ there is a contravariant functor $\Cat \to \text{Set}$ where $F = (\Hom_\Cat(-,A))$ where the dash is where we will take an input for $F$. Hence, for $B \in \Cat$ we have $F(B) = \Hom_\Cat(B,A)$ and for $f \in \Hom_\Cat(B,B')$ we get $F(f) \in \Hom_\Cat(F(B'),F(B))$. This is a funciton $\Hom_\Cat(B', A) \to Hom_\Cat(B,A)$. Functors like this example are called representable and are represented by $A$.
 \end{example}
+
 
 \end{document}
