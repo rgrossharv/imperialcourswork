@@ -1,0 +1,109 @@
+\documentclass[11pt,a4paper]{article}
+
+% Page layout and mathematical tools
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{hyperref}
+\usepackage{framed}
+
+\newenvironment{asidebar}{%
+    \def\FrameCommand{\vrule width 1.5pt \hspace{8pt}}%
+    \MakeFramed{\advance\hsize-\width\FrameRestore}%
+}{\endMakeFramed}
+\newcommand{\aside}[1]{\begin{asidebar}\noindent\textbf{* Aside:} #1\end{asidebar}}
+
+\title{Graph Theory Lecture Notes}
+\author{Ryland Gross}
+\date{\today}
+
+% Number results within each section. These environments share one counter.
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{exercise}[theorem]{Exercise}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\begin{document}
+
+\maketitle
+
+% Replace the date and add a new section for each lecture.
+\section{Lecture 1 (October 2nd 2026)}
+
+\begin{definition}
+    A \emph{Graph} $G$ is $(V, \Gamma)$ where $V$ is the set of vertices and $\Gamma$ is the set of edges where $\Gamma \subseteq P_2(V)$.
+\end{definition}
+
+\noindent
+There is a more rigorous defintion for a graph but it is a little bit too general, obtuse, and keeps us from doing things intuitively.
+
+\begin{definition}
+    A \emph{Graph} $G$ is $(V_G, E_G, \epsilon_G)$ where $\epsilon_G$ attaches edges to the vertice pair so we have $\epsilon_G: E_G \to \left\{\{u,v\} : u,v \in V_G\right\}$.
+\end{definition}
+
+\noindent
+So to get some examples flowing so you understand, we have $\epsilon_G(e) = \{u,u\}$ then we know that $e$ is a loop. Additionally if we have $e_1, e_2$ such that $\epsilon_G(e_1) = \epsilon_G(e_2)$ then we know thatv $e_1, e_2$ are double edges. 
+
+\begin{definition}
+    A graph is called \emph{simple} if it has no loops or double edges. 
+\end{definition}
+
+\noindent
+I think we will be only looking at simple graphs. We are now going to introduce homomorphisms of graphs. There is some abuse of notation that I think will come up a lot here (or at least this seemed to be what the professor implied). We will typically write a homomorphism between $G = (V_G, E_G, \dots)$ and $H = (V_H, E_H, \dots)$ as $\phi: G \to H$ but in reality we will have $\phi_V: V_G \to V_H$ such that we respect edges. This means for all $u, v \in V_G$ we have $uE_Gv \implies \phi(u)E_H\phi(v)$. Hence,
+
+\begin{definition}
+    A \emph{graph homomorphism}, $\phi:G \to H$, is a map between the vertices of the graphs ($V_G, V_H$) such that for all $u, v \in V_G$ we have $uE_Gv \implies \phi(u)E_H\phi(v)$. 
+\end{definition}
+
+\begin{exercise}
+    Check that for two graph homomorphisms their composition is also a graph homomorphism. 
+\end{exercise}
+
+\begin{proof}
+    Placeholder
+\end{proof}
+
+\begin{definition}
+    A graph homomorphism $\phi : G \to H$ is called an \emph{isomorphism} if $\phi_V$ is bijective/invertible and the inverse, $\phi_V^{-1}$ is also a homomorphism.
+\end{definition}
+
+\begin{example}
+    Here is a \textbf{non-example}: the map from two vertices with no edges to a map of two veritices with an edge is a homomorphism and a bijection but the inverse is not. 
+\end{example}
+
+\noindent
+We now have some example graphs we need to describe for notations sake, and we explain what the compliment of a graph looks like and is notated as. 
+
+\begin{definition}
+    The complement of a graph $G$, written as $\overline{G}$ is defined as $(V_G, \dots)$ but we have $uE_{\overline{G}}v \iff \text{we do not have } uE_G v$ 
+\end{definition}
+
+\noindent
+We now have some examples:
+
+\begin{enumerate}
+    \item $K_1 = \overline{K_1}$ is the trivial graph of just one point. 
+    \item $K_n$ is called a clique it has the property that $\forall$ $u, v \in G$ we have $uE_Gv$ this is also called the complete graph on $n$ points.
+    \item $\overline{K_n}$ is called an independent graph on $n$ vertices. and has the property that for all $u,v \in G$ we do not have $uE_Gv$ this is also called the null graph on $n$ points.
+    \item We also have the path graph $\pi$ which looks like $v_1 \to v_2 \to v_3 \dots \to v_n$ so $n$ vertices and $n-1$ edges. We write, $V = [n] := \{1,\dots,n\}$ with edges $(i)E_\pi(i+1)$ for $i \in \{1, \dots n-1\}$.
+    \item We also have a $C_n$ cycle which is the same as a path but witha n edge between $v_n$ and $v_1$ so you can define it using modular arithmetic on the last path graph we wrote.
+\end{enumerate}
+
+\noindent
+We also now define bi-partite graphs, which are basically graphs with two seperate sets of vertices with only connections between these two collections and not amongst the collections themselves. We also have $n$-partite graphs that have $n$ collections instead of just $2$. Extend the definition below similarly for $n$-partite graphs.
+
+\begin{definition}
+    A \emph{bipartite graph}, $G$, is a graph with subsets of vertices $U_1, U_2 \subseteq V_G, U_1 \neq \emptyset \neq U_2$ where we have $U_1 \cap U_2 = \emptyset$ and $U_1 \cup U_2 = V_G$ and for any $u,v \in U_1 \implies $ we do not have $u E v$.
+\end{definition}
+
+\end{document}
