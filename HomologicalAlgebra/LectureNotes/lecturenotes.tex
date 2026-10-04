@@ -6,6 +6,7 @@
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
 \usepackage{hyperref}
+\usepackage{framed}
 
 % Frequently used category and algebra notation
 \DeclareMathOperator{\Hom}{Hom}
@@ -13,7 +14,11 @@
 \newcommand{\CatD}{\mathcal{D}}
 \DeclareMathOperator{\ob}{ob}
 \newcommand{\Vect}{\text{Vect}}
-\newcommand{\aside}[1]{\par\noindent\textbf{* Aside:} #1\par}
+\newenvironment{asidebar}{%
+    \def\FrameCommand{\vrule width 1.5pt \hspace{8pt}}%
+    \MakeFramed{\advance\hsize-\width\FrameRestore}%
+}{\endMakeFramed}
+\newcommand{\aside}[1]{\begin{asidebar}\noindent\textbf{* Aside:} #1\end{asidebar}}
 
 \title{Homological Algebra Lecture Notes}
 \author{Ryland Gross}
