@@ -37,7 +37,7 @@
 The majority of the class will be working over a general field $k$ which is most often identified with $\mathbb{C}$. In fact, we will be working over characteristic $0$ fields (ie there is no such $n \in \mathbb{Z}^+$ such that $n\cdot 1 = 0$). Sometimes the course will take place over $\mathbb{R}$, but this is primarily just for visualization.
 
 \begin{definition}
-    An \emph{affine algebraic set} is the set of points on which a finite collection of polynomials $f_1, \dots f_m \in k[x_1,\dots,x_m]$ vanishes. We write this as $V_k(f_1, \dots,f_m)$. Once again, $$V_k(f_1,\dots,f_m)=\{\text{all } a \in k^n : f_i(a) = 0, \text{ for all } i\}$$ 
+    An \emph{affine algebraic set} is the set of points on which a finite collection of polynomials $f_1, \dots f_m \in k[x_1,\dots,x_n]$ vanishes. We write this as $V_k(f_1, \dots,f_m)$. Once again, $$V_k(f_1,\dots,f_m)=\{\text{all } a \in k^n : f_i(a) = 0, \text{ for all } i\}$$ 
 \end{definition}
 
 \medskip
@@ -49,7 +49,7 @@ We moved onto examples after this, many of which were drawn to be visualized (wh
 \end{example}
 
 \begin{example}
-    $(2,3) \in \mathbb{R}^2$, the point, is defined by $V_\mathbb{R}(x-2,y-3) = \{(2,3)\} \in \mathbb{R}^2$ since these are clearly the roots of our two polynomials.
+    $(2,3) \in \mathbb{R}^2$, the point, is defined by $V_\mathbb{R}(x-2,y-3) = \{(2,3)\} \subseteq \mathbb{R}^2$ since these are clearly the roots of our two polynomials.
 \end{example}
 
 \begin{example}
@@ -93,7 +93,7 @@ We then define the degree of a polynomial which is the largest such $i+j$ you ca
 \end{enumerate}
 
 \noindent
-Now, we might be interested in certain solutions to intersections of lines with some of our plane curves. We look at an example from antiquity related to Pythagorean triples. We start by turning the Pythagorean theorem into a plane curve, $$a^2 +b^2 = c^2 \implies \frac{a^2}{c^2} + \frac{b^2}{c^2} = 1$$ Hence, if we have pick $x = a/c$ and $y = b/c$ we can have $x^2+y^2=1$ be our plane curve. So, we're really looking to rational points on the unit circle. Thus, pick $p_0 = (-1,0)$ and we will examine a line going through the unit circle as a chord (secant line) and we will examine the solution to the second intersection which gives us a parameterization for the rest of the circle. This curve will look like $y=t(x+1)$. Now, we have two equations $$x^2+y^2=1 \qquad y=t(x+1)$$ Subsitution helps us get $$x^2+t^2(x+1)^2=1 \implies (x+1)(x-1+t^2(x+1))=0 \implies x = \frac{1-t^2}{1+t^2}$$ Now, solving for $y$ once again with subtitution we get, $$y = \frac{2t}{1+t^2} \implies \text{Unit-Circle} = \left\{(-1,0) \cup \left(\frac{1-t^2}{1+t^2},\frac{2t}{1+t^2}\right), t \in \mathbb{Q}\right\}$$ Since we want rational $t$ we can pick $t= r/s$ and get, $$\text{Unit-Circle} = \left\{(-1,0) \cup \left(\frac{s^2-r^2}{s^2+r^2},\frac{2rs}{s^2+r^2}\right)\right\}$$ Which means we know our $a$ and $b$ for checking pythagorean triples which is, (after multiplying over by $c$ to clear denominators) $$(s^2-r^2, 2rs, s^2+r^2), r,s \in \mathbb{Z}, \gcd(r,s)=1$$ And we know there are infinitely many co-prime pairs since there are infinitely many primes, thus we have infinitely many pythagorean triples!
+Now, we might be interested in certain solutions to intersections of lines with some of our plane curves. We look at an example from antiquity related to Pythagorean triples. We start by turning the Pythagorean theorem into a plane curve, $$a^2 +b^2 = c^2 \implies \frac{a^2}{c^2} + \frac{b^2}{c^2} = 1$$ Hence, if we have pick $x = a/c$ and $y = b/c$ we can have $x^2+y^2=1$ be our plane curve. So, we're really looking to rational points on the unit circle. Thus, pick $p_0 = (-1,0)$ and we will examine a line going through the unit circle as a chord (secant line) and we will examine the solution to the second intersection which gives us a parameterization for the rest of the circle. This curve will look like $y=t(x+1)$. Now, we have two equations $$x^2+y^2=1 \qquad y=t(x+1)$$ Subsitution helps us get $$x^2+t^2(x+1)^2=1 \implies (x+1)(x-1+t^2(x+1))=0 \implies x = \frac{1-t^2}{1+t^2}$$ Now, solving for $y$ once again with subtitution we get, $$y = \frac{2t}{1+t^2} \implies \text{Unit-Circle} = \left\{(-1,0) \cup \left(\frac{1-t^2}{1+t^2},\frac{2t}{1+t^2}\right), t \in \mathbb{Q}\right\}$$ Since we want rational $t$ we can pick $t= r/s$ and get, $$\text{Unit-Circle} = \left\{(-1,0) \cup \left(\frac{s^2-r^2}{s^2+r^2},\frac{2rs}{s^2+r^2}\right)\right\}$$ Which means we know our $a$ and $b$ for checking pythagorean triples which is, (after multiplying over by $c$ to clear denominators) $$(s^2-r^2, 2rs, s^2+r^2), r,s \in \mathbb{Z}$$ But it is important to note that we will need to pick $s, r$ with different parity or else we will have a triple that is all even. For example see if we pick $5, 7$ for our $s$ and $r$ we get $$(7^2-5^2, 2\cdot 5 \cdot 7, 7^2+5^2) = (24, 70, 74)$$ which we can factor and see $12, 35, 37$ is the triple that actually defines this one. Thus, what we need is not merely two co-prime integers, we want $\gcd(s,r)=1$ and $s \mod 2 \neq r \mod 2$. Choosing these will give you infinitely many unique pairs since for any $a$ which is even, there are infinitely many prime numbers $p$ that are larger than $a$ and hence coprime. 
 
 \section{Lecture 2 (October 2nd 2026)}
 \end{document}
