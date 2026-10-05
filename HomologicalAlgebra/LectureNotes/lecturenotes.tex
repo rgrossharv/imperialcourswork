@@ -7,6 +7,7 @@
 \usepackage{lmodern}
 \usepackage{hyperref}
 \usepackage{framed}
+\usepackage{tikz-cd}
 
 % Frequently used category and algebra notation
 \DeclareMathOperator{\Hom}{Hom}
@@ -18,7 +19,9 @@
     \def\FrameCommand{\vrule width 1.5pt \hspace{8pt}}%
     \MakeFramed{\advance\hsize-\width\FrameRestore}%
 }{\endMakeFramed}
-\newcommand{\aside}[1]{\begin{asidebar}\noindent\textbf{* Aside:} #1\end{asidebar}}
+\newenvironment{aside}{%
+    \begin{asidebar}\noindent\textbf{* Aside:}\enspace
+}{\end{asidebar}}
 
 \title{Homological Algebra Lecture Notes}
 \author{Ryland Gross}
@@ -60,7 +63,9 @@
     \end{enumerate}
 \end{definition}
 
-\aside{add intuition here}
+\begin{aside}
+add intuition here
+\end{aside}
 
 \begin{example}
     The category of sets $\Cat$ can be considered and the morphisms on it are $\Hom_\Cat(A,B)$ where $A, B$ are sets. This naturally gives us $\Hom_\Cat(A,B) = \text{Func}(A,B)$. 
@@ -112,9 +117,39 @@ Now, moving ahead with a view towards functors, we need to introduce some machin
     A (covariant) \emph{functor} on two categories $\Cat$ and $\CatD$, $F: \Cat \to \CatD$ is an assignment between $\ob(\Cat) \to \ob(\CatD)$ that takes $X \in \ob(\Cat)$ to  $F(X) \in \ob(\CatD)$ so we have $F$ taking $X \to F(X)$ such that for any $X,Y \in \ob(\Cat)$ we know there exists $F_{X,Y}: \Hom_\Cat(X,Y) \to \Hom_\CatD(F(X),F(Y))$ where $F(f):F(X) \to F(Y)$ which also must have the properties that $F(\text{id}_X) = \text{id}_{F(X)}$ and that $F(f \circ g) = F(f) \circ F(g)$.
 \end{definition}
 
+\begin{aside}
+Ok, this is really abstract and frankly warrants a commutative diagram to describe what functors can actually do. We start with $F: \Cat \to \CatD$ which has two assignments inside of it.
+\[
+\scalebox{1.2}{
+\begin{tikzcd}[ampersand replacement=\&]
+X \arrow[r, "f"] \arrow[d, mapsto, "F"'] \&
+Y \arrow[d, mapsto, "F"] \\
+F(X) \arrow[r, "F(f)"'] \&
+F(Y)
+\end{tikzcd}
+}
+\]
+Thus, we can see that $F$ can take in the morphism between $F(X)$ and $F(Y)$ which means we similarly have $$F: \Hom_\Cat(X,Y) \to \Hom_\CatD(F(X),F(Y))$$ The final part of our definition is just making sure it plays nicely with those morphisms.
+\end{aside}
+
 \begin{definition}
     A \emph{contravariant functor} is a covariant functor $F: \Cat^{\text{op}} \to \CatD$ This means it flips the direction when we apply it to spaces and functions between their homomorphisms $\Hom_\Cat(X,Y) \to \Hom_\CatD(F(Y),F(X))$
 \end{definition}
+
+\begin{aside}
+Here, I will try to make another diagram to illustrate how a contravariant functor works. We start with a contravariant functor $F: \Cat^\text{op} \to \CatD$ which has two assignments, 
+\[
+\scalebox{1.2}{
+\begin{tikzcd}[ampersand replacement=\&]
+X \arrow[r, "f"] \arrow[d, mapsto, "F"'] \&
+Y \arrow[d, mapsto, "F"] \\
+F(X) \&
+F(Y) \arrow[l, "F(f)"']
+\end{tikzcd}
+}
+\]
+This makes it evident to see that we have the opposite direction only on the bottom $$F: \Hom_\Cat(X,Y) \to \Hom_\CatD(F(Y),F(X))$$ This is because the morphisms over $\Cat^\text{op}$ are $Hom_\Cat(Y, X)$.
+\end{aside}
 
 \begin{example}
     Here we will let $\Cat = \text{Top}$ and $\CatD = \text{Set}$ and we take the natural function from a topological space to the set underneath it. $F: \text{Top} \to \text{Set}$ which forgets the topology and just views the former topological space as a set. The precise way to think of this is that \begin{enumerate}
@@ -124,7 +159,7 @@ Now, moving ahead with a view towards functors, we need to introduce some machin
 \end{example}
 
 \begin{definition}
-    A functor $F$, $F:\Cat \to \CatD$ is called fully faithful if $f: Hom_\Cat(X,Y) \to \Hom_\CatD(F(X),F(Y))$ is bijective for $X,Y$ in $\Cat$
+    A functor $F$, $F:\Cat \to \CatD$ is called fully faithful if $F: Hom_\Cat(X,Y) \to \Hom_\CatD(F(X),F(Y))$ is bijective for $X,Y$ in $\Cat$
 \end{definition}
 
 \noindent
@@ -134,5 +169,24 @@ From now on $\ob(\Cat)$ will be replaced by just $\Cat$.
     For any category $\Cat$ and any object $A \in \Cat$ there is a contravariant functor $\Cat \to \text{Set}$ where $F = (\Hom_\Cat(-,A))$ where the dash is where we will take an input for $F$. Hence, for $B \in \Cat$ we have $F(B) = \Hom_\Cat(B,A)$ and for $f \in \Hom_\Cat(B,B')$ we get $F(f) \in \Hom_\Cat(F(B'),F(B))$. This is a funciton $\Hom_\Cat(B', A) \to Hom_\Cat(B,A)$. Functors like this example are called representable and are represented by $A$.
 \end{example}
 
+\begin{aside}
+    Here we need to add a commutative diagram for 1.14 to make sure it is obvious what is going on. Placeholder.
+\end{aside}
+
+\begin{definition}
+    Let $\Cat$ and $\CatD$ be categories with functors $F, G: \Cat \to \CatD$. A \emph{natural transform} $\eta : F \to G$ is for each $C \in \Cat$ a morphism $\eta_C: F(C) \to G(C)$ such that for any morphism $f: C \to C'$ both $C, C' \in \Cat$ the following diagram commutes. 
+    \[
+    \scalebox{1.2}{\begin{tikzcd}[ampersand replacement = \&]
+        F(C) \arrow[r, "\eta_C"] \arrow[d, "F(f)"'] \&
+        G(C) \arrow[d, "G(f)"] \\
+        F(C') \arrow[r, "\eta_{C'}"] \&
+        G(C')
+    \end{tikzcd}
+    }
+    \] 
+\end{definition}
+
+\noindent
+An easy example of our first natural transformation can come from our earlier functors on topological spaces and sets. In particular there are two ways you can pretty easily put a topology on a set: make it the discrete topology, and make it the trivial topology.
 
 \end{document}

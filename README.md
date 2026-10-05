@@ -1,0 +1,1 @@
+This is a repository containing all of the work I will be doing and the notes for my MSc at Imperial. I am just using github as an easy way to keep backups and share it.
