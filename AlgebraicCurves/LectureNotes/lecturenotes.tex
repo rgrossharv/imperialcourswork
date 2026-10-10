@@ -101,6 +101,10 @@ We then define the degree of a polynomial which is the largest such $i+j$ you ca
 \noindent
 Now, we might be interested in certain solutions to intersections of lines with some of our plane curves. We look at an example from antiquity related to Pythagorean triples. We start by turning the Pythagorean theorem into a plane curve, $$a^2 +b^2 = c^2 \implies \frac{a^2}{c^2} + \frac{b^2}{c^2} = 1$$ Hence, if we have pick $x = a/c$ and $y = b/c$ we can have $x^2+y^2=1$ be our plane curve. So, we're really looking to rational points on the unit circle. Thus, pick $p_0 = (-1,0)$ and we will examine a line going through the unit circle as a chord (secant line) and we will examine the solution to the second intersection which gives us a parameterization for the rest of the circle. This curve will look like $y=t(x+1)$. Now, we have two equations $$x^2+y^2=1 \qquad y=t(x+1)$$ Subsitution helps us get $$x^2+t^2(x+1)^2=1 \implies (x+1)(x-1+t^2(x+1))=0 \implies x = \frac{1-t^2}{1+t^2}$$ Now, solving for $y$ once again with subtitution we get, $$y = \frac{2t}{1+t^2} \implies \text{Unit-Circle} = \left\{(-1,0) \cup \left(\frac{1-t^2}{1+t^2},\frac{2t}{1+t^2}\right), t \in \mathbb{Q}\right\}$$ Since we want rational $t$ we can pick $t= r/s$ and get, $$\text{Unit-Circle} = \left\{(-1,0) \cup \left(\frac{s^2-r^2}{s^2+r^2},\frac{2rs}{s^2+r^2}\right)\right\}$$ Which means we know our $a$ and $b$ for checking pythagorean triples which is, (after multiplying over by $c$ to clear denominators) $$(s^2-r^2, 2rs, s^2+r^2), r,s \in \mathbb{Z}$$ But it is important to note that we will need to pick $s, r$ with different parity or else we will have a triple that is all even. For example see if we pick $5, 7$ for our $s$ and $r$ we get $$(7^2-5^2, 2\cdot 5 \cdot 7, 7^2+5^2) = (24, 70, 74)$$ which we can factor and see $12, 35, 37$ is the triple that actually defines this one. Thus, what we need is not merely two co-prime integers, we want $\gcd(s,r)=1$ and $s \mod 2 \neq r \mod 2$. Choosing these will give you infinitely many unique pairs since for any $a$ which is even, there are infinitely many prime numbers $p$ that are larger than $a$ and hence coprime. 
 
+\begin{exercise}
+    Why is this not true for degree 3?
+\end{exercise}
+
 \section{Lecture 2 (October 2nd 2026)}
 
 The majority of this class was reviewing some ideas from algebra and topology. We discuss ideals, the Hilbert Basis Theorem. Afterwards, we look at some algebra we can perform over varieties.
@@ -173,7 +177,7 @@ If $I \subseteq k[x_1, \dots, x_n]$ is an ideal then we write $$V_k(I) = \{(a_1,
 \end{proof}
 
 \begin{exercise}
-    Let $V_1$ and $V_2$ be affine algebraic sets in $k^n$ then $V_1 \cup V_2$ is an affine algebraic set.
+    Let $V_1 = V_k(f_1, \dots f_m)$ and $V_2 = V_k((g_1, \dots g_l))$ be affine algebraic sets in $k^n$ then $V_1 \cup V_2$ is an affine algebraic set where $V_1 \cup V_2 = V_k(g_j \cdot f_i | 1 \leq i \leq m, 1 \leq j \leq l)$
 \end{exercise}
 
 \begin{proof}
@@ -195,12 +199,28 @@ This remark lets us define the Zariski topology on affine space. Here we define 
 \end{enumerate}
 
 \begin{exercise}
-    Prove the \emph{Zariski Topology} on affine space is indeed a topology.
+    Prove the Zariski Topology on affine space is indeed a topology.
 \end{exercise}
 
 \begin{proof}
     Placeholder
 \end{proof}
+\aside{ Here is a nasty contradiciton proof we will need later, and is important for establishing that $(0)$ defines the largest open set in the zariski topology later:
+\begin{exercise}
+    For a given polynomial $f \in k[x_1, \dots, x_n]$, where $|k|$ is infinite, we can specialize the polynomial to a single variable polynomial $f^1 \in k[x]$ by evaluating it at some point $p = (p_1, \dots p_{n-1}, x_n) \in \mathbb{A}^n$. 
+\end{exercise}
+
+\begin{proof}
+    We proceed by induction on the number of elements in $k[x]$ this is already done. We now suppose the result holds in $n-1$ variables so that for $n$ variables we have $f(x_1, \dots, x_n) \neq 0$. We write this polynomial as $$f(x_1, \dots, x_n) = \sum_{j=0}^d g_j(x_1, \dots, x_{n-1})x_n^j$$ where not every $g_j = 0$, pick one and we can apply the $n-1$ case to that $g_j$ and get $$f(p_1, \dots, p_{n-2}, x_{n-1}, x_n) = \sum_{j=0}^d g_j(p_1, \dots, p_{n-2}, x_{n-1})x_n^j$$ Since each $g_j$ is a polynomial of finite degree it can only have finitely many roots. Thus, we know, since $k$ is infinite we can pick some $p_{n-1}$ such that for at least one $g_j$, $g_j(p_1, \dots, p_{n-2}, p_{n-1}) \neq 0$. This then gives us $$f(p_1, \dots, p_{n-2}, p_{n-1}, x_n) = \sum_{j=0}^d g_j(p_1, \dots, p_{n-2}, p_{n-1})x_n^j$$ Which is indeed a non-zero polynomial in one variable and we are done. 
+\end{proof}
+
+\begin{exercise}
+    When $k$ is an infinite field we have that if an ideal $I \subseteq k[x_1, \dots, x_n]$ has the property that $V_k(I) = \mathbb{A}^n$ implies $I = (0)$. 
+\end{exercise}
+
+\begin{proof}
+    We get as our hypothesis that $V_k(I) = \mathbb{A}^n$. Now suppose not for the sake of contradiction such that $I \neq (0)$. Pick some non-zero $f \in I$ which we know will vanish on $x$ for $x \in \mathbb{A}^n$. We now specialize to $f^1$ using \emph{Exercise 2.14}. We know that $f^1$ on $p = (p_1, \dots, x, \dots p_n)$ will vanish over every $x=c \in k$, this gives us $f^1(c) = 0$ for any choice of $c$ in $\mathbb{A}^n$ so we have some $f^1(c) = a_1c^d+a_2c^{d-1} + \dots + a_{d-1}c + a_d = 0$ for some finite $d$. But this is impossible since our one variable version of $f$ can only have at most $d$ many zeroes from our normal high-school algebra knowledge. But here we have infinitely many roots which is a contradiciton. 
+\end{proof}}
 
 \noindent
 This topology is weaker (she actually means coarser) than the typical topologies on $\mathbb{R}^n$ and $\mathbb{C}^n$. Indeed Zariski opens are open in the typical sense but open sets in the typical topologies are not necessarily open in Zariski topology. 
@@ -210,12 +230,14 @@ This topology is weaker (she actually means coarser) than the typical topologies
 \end{definition}}
 
 \begin{exercise}
-    The Zariski Topology is not Hausdorff.
+    The Zariski Topology on $\mathbb{A}^n$, defined by $k[x_1, \dots, x_n]$ for $k$, where $|k|$ is infinite, is not Hausdorff.
 \end{exercise}
 
 \begin{proof}
-    Placeholder
+    Let, $a, b \in \mathbb{A}^n$ and let $U, V \subseteq \mathbb{A}^n$ be any two open sets around them so that we have $a \in U, b \in V$. We wish to show that these open sets will have an interection. We know that an open set is defined by the complement of affine algebraic set in this topology. Thus, since we have assumed $U,V$ non-empty we can write them as $U=\mathbb{A}^n - V_k(I)$ and $V=\mathbb{A}^n -V_k(J)$ where $I, J$ ideals $\subseteq k[x_1, \dots, x_n]$. We now wish to show that these are not disjoint. Thus consider their intersection, $$U \cap V = (\mathbb{A}^n - V_k(I)) \cap (\mathbb{A}^n - V_k(J)) = \mathbb{A}^n - (V_k(I) \cup V_k(J))$$ which we need to show is non-empty. But we know that the union of the vanishing is the set $V_k(I) \cup V_k(J) = V_k(g_j \cdot f_i | 1 \leq i \leq m, 1 \leq j \leq l)$ for $I = (f_1, \dots , f_m), J = (g_1, \dots, g_l)$ from \emph{Exercise 2.11}. We know that the intersection is empty if the union of the vanishing is $\mathbb{A}^n$, but by \emph{Exercise 2.15} we know this occurs when all $g_j \cdot f_i = 0$ for $ 1 \leq i \leq m, 1 \leq j \leq m $ which cannot occur since $g_i, f_i \in k[x_1, \dots, x_n]$ is an integral domain and not all $g_i, f_i$ are $0$ since $V_k(J)$ and $V_k(I)$ have non-empty complements in $\mathbb{A}^n$ they are both not the $0$ ideal, $(0)$. Thus not all $g_j \cdot f_i$ are $0$ and thus, the vanishing is not equal to the vanishing set over $0$ and thus, the complement $U \cap V = A^n - (V_k(I) \cup V_k(J)) \neq \emptyset$. And we are done. 
 \end{proof}
+
+\aside{This is really bizarre and we need to be careful with exactly how we state it, and my lecturer is not being that careful. You specifically need $|k|$ to be infinite for this proof, and I think you can find counterexamples like $\mathbb{Z}/2$ which are not even pathological.}
 
 \begin{theorem}[Fundamental Theorem of Algebra]
     $\mathbb{C}$ is algebraically closed.
